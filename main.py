@@ -78,8 +78,6 @@ def mint(private_key, proxy):
     contract_address = w3.to_checksum_address(MINTFUN_SEASON1_CONTRACT)
     contract = w3.eth.contract(address=contract_address, abi=mintfun_season1_abi)
 
-    # base_fee = w3.eth.fee_history(w3.eth.get_block_number(), 'latest')['baseFeePerGas'][-1]
-    # priority_max = w3.to_wei(0.5, 'gwei')
     signature = get_mint_signature(address, proxy)
 
     swap_txn = contract.functions.mint([4], [1], 1, to_bytes(signature)).build_transaction({
